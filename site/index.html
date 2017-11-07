@@ -1,9 +1,122 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Hello world</title>
-</head>
-<body>
-<h1>Hello Coursera</h1>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>Test print.js</title>
+	</head>
+	<body>
+		<!-- <form method="post" action="#" id="printJS-form"> -->
+			<div id="divToPrint">
+				<table>
+					<tr>
+					    <th>Firstname</th>
+					    <th>Lastname</th> 
+					    <th>Age</th>
+				  	</tr>
+				  		<tr>
+						    <td>Jill</td>
+						    <td>Smith</td> 
+						    <td>50</td>
+				  		</tr>
+			  		<tr>
+				  		<tr>
+						    <td>aawfaw</td>
+						    <td>Smith</td> 
+						    <td>50</td>
+				  		</tr>
+				  	</tr>
+				</table>
+				<img src="buttonprint.png" height="50" width="50">
+			</div>
+ 		<!-- </form> -->
+		<script src="printjs/js/print.min.js" type="text/javascript"></script>
+		<script src="printThis.js" type="text/javascript"></script>
+		<!-- <link rel="stylesheet" href="printjs/css/print.min.css"> -->
+		<script type="text/javascript">
+			function printJson() {
+				// var printContents = document.getElementById('divToPrint').innerHTML;
+				var printContents = [
+					'<div id="#toPrint">',
+						'<table>',
+							'<tr>',
+							    '<th>Firstname</th>',
+							    '<th>Lastname</th> ',
+							    '<th>Age</th>',
+						  	'</tr>',
+						  		'<tr>',
+								    '<td>Jill</td>',
+								    '<td>Smith</td> ',
+								    '<td>50</td>',
+						  		'</tr>',
+					  		'<tr>',
+						  		'<tr>',
+								    '<td>aawfaw</td>',
+								    '<td>Smith</td> ',
+								    '<td>50</td>',
+						  		'</tr>',
+						  	'</tr>',
+						'</table>',
+						'<img src="buttonprint.png" height="50" width="50">',
+					'</div>'
+				].join('\n');
+			 	$("#toPrint").printThis();
+
+				// console.log("printJson");
+				// var someJSONdata = [
+				//     {
+				//        name: 'John Doe',
+				//        email: 'john@doe.com',
+				//        phone: '111-111-1111'
+				//     },
+				//     {
+				//        name: 'Barry Allen',
+				//        email: 'barry@flash.com',
+				//        phone: '222-222-2222'
+				//     },
+				//     {
+				//        name: 'Cool Dude',
+				//        email: 'cool@dude.com',
+				//        phone: '333-333-3333'
+				//     }
+ 			// 	];
+
+ 			// 	printJS({
+				//     printable: someJSONdata,
+				//     properties: ['name', 'email', 'phone'],
+				//     type: 'json',
+				//     gridHeaderStyle: 'color: red;  border: 2px solid #3971A5;',
+				//     gridStyle: 'border: 2px solid #3971A5;'
+				// });
+
+ 				// printJS('divToPrint', 'html');
+
+ 				// var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+			  //   mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+			  //   mywindow.document.write('</head><body >');
+			  //   mywindow.document.write('<h1>' + document.title  + '</h1>');
+			  //   mywindow.document.write(document.getElementById(elem).innerHTML);
+			  //   mywindow.document.write('</body></html>');
+
+			  //   mywindow.document.close(); // necessary for IE >= 10
+			  //   mywindow.focus(); // necessary for IE >= 10*/
+
+			  //   mywindow.print();
+			  //   mywindow.close();
+
+			  //   return true;
+			}
+		</script>
+		<div>
+<!-- 			<form id="printJSform">
+				First name:<br>
+				<input type="text" name="firstname"><br>
+				Last name:<br>
+				<input type="text" name="lastname">
+				Label:<br>
+				<input type="image" src="buttonprint.png"><br>
+ 			</form> -->
+			<button type="button" onclick="printJson()">Print</button>
+		</div>
+	</body>
 </html>
