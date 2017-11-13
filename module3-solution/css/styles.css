@@ -1,0 +1,36 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+#header-nav {
+	background-color: #40AFAF;
+	border-radius: 0;
+	border: 1;
+	border-color: black;
+}
+
+.navbar-header {
+	overflow: hidden;
+}
+
+p {
+	background: #B9DFFF;
+	height: 1000px;
+}
+
+section {
+	background: #B9DFFF;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+h2, button {
+	display: inline-block;
+	vertical-align: middle;
+}
