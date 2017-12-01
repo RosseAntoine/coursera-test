@@ -25,7 +25,7 @@ function handleSuccess(stream) {
     console.log('Stream inactive');
   };
   window.stream = stream; // make variable available to browser console
-  video.srcObject = stream;
+  // video.srcObject = stream;
 }
 
 function handleError(error) {
