@@ -48,8 +48,12 @@ function getStream() {
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
+  console.log(stream);
   var videoElement = document.querySelector('#reader video');
-  videoElement.srcObject = stream;
+  console.log(videoElement);
+  if(videoElement != null) {
+    videoElement.srcObject = stream;
+  }
 }
 
 
