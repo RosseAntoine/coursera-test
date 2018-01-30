@@ -18,6 +18,7 @@
 // };
 
 
+
 var videoSelect = document.querySelector('select#videoSource');
 videoSelect.onchange = getStream;
 
@@ -25,7 +26,7 @@ navigator.mediaDevices.enumerateDevices()
   .then(gotDevices).then(getStream).catch(handleError);
 
 
-  
+
 
 function getStream() {
   if (window.stream) {
@@ -47,6 +48,7 @@ function getStream() {
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
+  var videoElement = document.querySelector('video');
   videoElement.srcObject = stream;
 }
 
