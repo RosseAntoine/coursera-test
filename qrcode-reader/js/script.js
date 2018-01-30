@@ -17,6 +17,46 @@
 //   video: true
 // };
 
+
+var videoSelect = document.querySelector('select#videoSource');
+videoSelect.onchange = getStream;
+
+navigator.mediaDevices.enumerateDevices()
+  .then(gotDevices).then(getStream).catch(handleError);
+
+
+  
+
+function getStream() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+  }
+
+  var constraints = {
+    audio: false,
+    video: {
+      deviceId: {exact: videoSelect.value}
+    }
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints).
+    then(gotStream).catch(handleError);
+}
+
+function gotStream(stream) {
+  window.stream = stream; // make stream available to console
+  videoElement.srcObject = stream;
+}
+
+
+
+
+
+
+
+
 function handleSuccess(stream) {
   var videoTracks = stream.getVideoTracks();
   console.log('Got stream with constraints:', constraints);
@@ -69,18 +109,19 @@ function gotDevices(deviceInfos) {
     var option = document.createElement('option');
     option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
-      var deviceId = deviceInfo.deviceId;
-      break;
+      option.text = deviceInfo.label || 'camera ' +
+        (videoSelect.length + 1);
+      videoSelect.appendChild(option);
     }
   }
 
-  var constraints = {
-    video: {
-      deviceId: {exact: deviceId}
-    }
-  };
+  // var constraints = {
+  //   video: {
+  //     deviceId: {exact: deviceId}
+  //   }
+  // };
 
-  navigator.mediaDevices.getUserMedia(constraints);
+  // navigator.mediaDevices.getUserMedia(constraints);
 
   // selectors.forEach(function(select, selectorIndex) {
   //   if (Array.prototype.slice.call(select.childNodes).some(function(n) {
@@ -91,5 +132,5 @@ function gotDevices(deviceInfos) {
   // });
 }
 
-navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+// navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
 
