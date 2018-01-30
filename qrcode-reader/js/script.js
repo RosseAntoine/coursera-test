@@ -28,27 +28,31 @@ function handleSuccess(stream) {
   // video.srcObject = stream;
 }
 
+// function handleError(error) {
+//   if (error.name === 'ConstraintNotSatisfiedError') {
+//     errorMsg('The resolution ' + constraints.video.width.exact + 'x' +
+//         constraints.video.width.exact + ' px is not supported by your device.');
+//   } else if (error.name === 'PermissionDeniedError') {
+//     errorMsg('Permissions have not been granted to use your camera and ' +
+//       'microphone, you need to allow the page access to your devices in ' +
+//       'order for the demo to work.');
+//   }
+//   errorMsg('getUserMedia error: ' + error.name, error);
+// }
+
+// function errorMsg(msg, error) {
+//   // errorElement.innerHTML += '<p>' + msg + '</p>';
+//   if (typeof error !== 'undefined') {
+//     console.error(error);
+//   }
+// }
+
+
+
+
 function handleError(error) {
-  if (error.name === 'ConstraintNotSatisfiedError') {
-    errorMsg('The resolution ' + constraints.video.width.exact + 'x' +
-        constraints.video.width.exact + ' px is not supported by your device.');
-  } else if (error.name === 'PermissionDeniedError') {
-    errorMsg('Permissions have not been granted to use your camera and ' +
-      'microphone, you need to allow the page access to your devices in ' +
-      'order for the demo to work.');
-  }
-  errorMsg('getUserMedia error: ' + error.name, error);
+  console.log('navigator.getUserMedia error: ', error);
 }
-
-function errorMsg(msg, error) {
-  errorElement.innerHTML += '<p>' + msg + '</p>';
-  if (typeof error !== 'undefined') {
-    console.error(error);
-  }
-}
-
-
-
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
