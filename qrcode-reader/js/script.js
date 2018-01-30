@@ -48,7 +48,7 @@ function getStream() {
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
-  var videoElement = document.querySelector('video');
+  var videoElement = document.querySelector('#reader video');
   videoElement.srcObject = stream;
 }
 
