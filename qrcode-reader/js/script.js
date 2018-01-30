@@ -69,11 +69,19 @@ function gotDevices(deviceInfos) {
     var option = document.createElement('option');
     option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
-      console.log('Video input device: ', deviceInfo);
-    } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
+      var deviceId = deviceInfo.deviceId;
+      break;
     }
   }
+
+  var constraints = {
+    video: {
+      deviceId: {exact: deviceId}
+    }
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints);
+
   // selectors.forEach(function(select, selectorIndex) {
   //   if (Array.prototype.slice.call(select.childNodes).some(function(n) {
   //     return n.value === values[selectorIndex];
