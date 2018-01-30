@@ -2,64 +2,62 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script type="text/javascript" src="qrcode.js"></script>
 		<title>Test print.js</title>
 	</head>
 	<body>
 		<!-- <form method="post" action="#" id="printJS-form"> -->
-			<div id="divToPrint">
-				<table>
-					<tr>
-					    <th>Firstname</th>
-					    <th>Lastname</th> 
-					    <th>Age</th>
-				  	</tr>
-				  		<tr>
-						    <td>Jill</td>
-						    <td>Smith</td> 
-						    <td>50</td>
-				  		</tr>
-			  		<tr>
-				  		<tr>
-						    <td>aawfaw</td>
-						    <td>Smith</td> 
-						    <td>50</td>
-				  		</tr>
-				  	</tr>
-				</table>
-				<img src="buttonprint.png" height="50" width="50">
+			<div id="divToPrint" style="position: absolute; left: -999em">
+
 			</div>
  		<!-- </form> -->
 		<script src="printjs/js/print.min.js" type="text/javascript"></script>
-		<script src="printThis.js" type="text/javascript"></script>
+		<!-- <script src="printThis.js" type="text/javascript"></script> -->
 		<!-- <link rel="stylesheet" href="printjs/css/print.min.css"> -->
 		<script type="text/javascript">
+			function generateQrcode() {
+				// document.getElementById("qrcode").innerHTML = "";
+				// var qrcode = new QRCode("qrcode");
+				// qrcode.makeCode("4567");
+				try {
+					var elem = document.getElementById('newDiv');
+				    elem.parentNode.removeChild(elem);
+				}
+				catch (err) {
+
+				}
+
+				createQrCode();
+			}
+
 			function printJson() {
 				// var printContents = document.getElementById('divToPrint').innerHTML;
-				var printContents = [
-					'<div id="#toPrint">',
-						'<table>',
-							'<tr>',
-							    '<th>Firstname</th>',
-							    '<th>Lastname</th> ',
-							    '<th>Age</th>',
-						  	'</tr>',
-						  		'<tr>',
-								    '<td>Jill</td>',
-								    '<td>Smith</td> ',
-								    '<td>50</td>',
-						  		'</tr>',
-					  		'<tr>',
-						  		'<tr>',
-								    '<td>aawfaw</td>',
-								    '<td>Smith</td> ',
-								    '<td>50</td>',
-						  		'</tr>',
-						  	'</tr>',
-						'</table>',
-						'<img src="buttonprint.png" height="50" width="50">',
-					'</div>'
-				].join('\n');
-			 	$("#toPrint").printThis();
+				// var printContents = [
+				// 	'<div id="#toPrint">',
+				// 		'<table>',
+				// 			'<tr>',
+				// 			    '<th>First</th>',
+				// 			    '<th>Lastname</th> ',
+				// 			    '<th>Age</th>',
+				// 		  	'</tr>',
+				// 		  		'<tr>',
+				// 				    '<td>Jill</td>',
+				// 				    '<td>Smith</td> ',
+				// 				    '<td>50</td>',
+				// 		  		'</tr>',
+				// 	  		'<tr>',
+				// 		  		'<tr>',
+				// 				    '<td>aawfaw</td>',
+				// 				    '<td>Smith</td> ',
+				// 				    '<td>50</td>',
+				// 		  		'</tr>',
+				// 		  	'</tr>',
+				// 		'</table>',
+				// 		'<img src="buttonprint.png" height="50" width="50">',
+				// 	'</div>'
+				// ].join('\n');
+			 // 	$("#toPrint").printThis();
 
 				// console.log("printJson");
 				// var someJSONdata = [
@@ -88,7 +86,48 @@
 				//     gridStyle: 'border: 2px solid #3971A5;'
 				// });
 
- 				// printJS('divToPrint', 'html');
+
+				// var printContents = [
+				// '<div id="#toPrint">',
+				// 	'<table>',
+				// 		'<tr>',
+				// 		    '<th>First</th>',
+				// 		    '<th>Lastname</th> ',
+				// 		    '<th>Age</th>',
+				// 	  	'</tr>',
+				// 	  		'<tr>',
+				// 			    '<td>Jill</td>',
+				// 			    '<td>Smith</td> ',
+				// 			    '<td>50</td>',
+				// 	  		'</tr>',
+				//   		'<tr>',
+				// 	  		'<tr>',
+				// 			    '<td>aawfaw</td>',
+				// 			    '<td>Smith</td> ',
+				// 			    '<td>50</td>',
+				// 	  		'</tr>',
+				// 	  	'</tr>',
+				// 	'</table>',
+				// 	'<div id="qrcode"></div>',
+				// '</div>'
+				// ].join('\n');
+				// var divQrCode = printContents.getElementById("qrcode");
+				
+
+				// $("#text").
+				// 	on("blur", function () {
+				// 		makeCode();
+				// 	}).
+				// 	on("keydown", function (e) {
+				// 		if (e.keyCode == 13) {
+				// 			makeCode();
+				// 		}
+				// 	});
+
+
+ 				printJS('newDiv', 'html');
+				
+
 
  				// var mywindow = window.open('', 'PRINT', 'height=400,width=600');
 
@@ -106,6 +145,28 @@
 
 			  //   return true;
 			}
+
+			function createQrCode() {
+				// const newDiv = document.createElement("div");
+				// newDiv.id = "newDiv";
+				// newDiv.style = "position: absolute; left: -999em";
+				// // const newContent = document.createTextNode("Salutations !");
+				// // newDiv.appendChild(newContent);
+				// const actualDiv = document.getElementById("divToPrint");
+  		// 		document.body.insertBefore(newDiv, actualDiv);
+  		// 		var qrcode = new QRCode("newDiv");
+  		// 		qrcode.makeCode("4567");
+
+				const newDiv = document.createElement("div");
+				newDiv.id = "newDiv";
+				newDiv.style = "position: absolute; left: -999em";
+				// const newContent = document.createTextNode("Salutations !");
+				// newDiv.appendChild(newContent);
+				const actualDiv = document.getElementById("divToPrint").appendChild(newDiv);
+  				// document.body.insertBefore(newDiv, actualDiv);
+  				var qrcode = new QRCode("newDiv");
+  				qrcode.makeCode("4567");
+			}
 		</script>
 		<div>
 <!-- 			<form id="printJSform">
@@ -117,6 +178,7 @@
 				<input type="image" src="buttonprint.png"><br>
  			</form> -->
 			<button type="button" onclick="printJson()">Print</button>
+			<button type="button" onclick="generateQrcode()">Generate QR code</button>
 		</div>
 	</body>
 </html>
