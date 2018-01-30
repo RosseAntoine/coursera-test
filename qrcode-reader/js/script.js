@@ -70,7 +70,7 @@ function gotDevices(deviceInfos) {
     option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
       var deviceId = deviceInfo.deviceId;
-      // break;
+      break;
     }
   }
 
