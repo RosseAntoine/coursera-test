@@ -47,35 +47,46 @@ function errorMsg(msg, error) {
   }
 }
 
-MediaStreamTrack.getSources(function(sourceInfos) {
-  var audioSource = null;
-  var videoSource = null;
 
-  for (var i = 0; i != sourceInfos.length; ++i) {
-    var sourceInfo = sourceInfos[i];
-    if (sourceInfo.kind === 'video') {
-      console.log(sourceInfo.id, sourceInfo.label || 'camera');
 
-      videoSource = sourceInfo.id;
+
+function gotDevices(deviceInfos) {
+  // Handles being called several times to update labels. Preserve values.
+  var values = selectors.map(function(select) {
+    return select.value;
+  });
+  selectors.forEach(function(select) {
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+  });
+  for (var i = 0; i !== deviceInfos.length; ++i) {
+    var deviceInfo = deviceInfos[i];
+    var option = document.createElement('option');
+    option.value = deviceInfo.deviceId;
+    if (deviceInfo.kind === 'audioinput') {
+      option.text = deviceInfo.label ||
+          'microphone ' + (audioInputSelect.length + 1);
+      audioInputSelect.appendChild(option);
+    } else if (deviceInfo.kind === 'audiooutput') {
+      option.text = deviceInfo.label || 'speaker ' +
+          (audioOutputSelect.length + 1);
+      audioOutputSelect.appendChild(option);
+    } else if (deviceInfo.kind === 'videoinput') {
+      option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+      videoSelect.appendChild(option);
     } else {
-      console.log('Some other kind of source: ', sourceInfo);
+      console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
-
-  sourceSelected(audioSource, videoSource);
-});
-
-function sourceSelected(audioSource, videoSource) {
-  var constraints = {
-    audio: {
-      optional: [{sourceId: audioSource}]
-    },
-    video: {
-      optional: [{sourceId: videoSource}]
+  selectors.forEach(function(select, selectorIndex) {
+    if (Array.prototype.slice.call(select.childNodes).some(function(n) {
+      return n.value === values[selectorIndex];
+    })) {
+      select.value = values[selectorIndex];
     }
-  };
-
-  navigator.mediaDevices.getUserMedia(constraints).
-    then(handleSuccess).catch(handleError);
+  });
 }
+
+navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
 
