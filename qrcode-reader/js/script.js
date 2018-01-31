@@ -58,30 +58,30 @@ function gotStream(stream) {
 
 
 
-$(document).ready(function(){
-  // var reader = document.getElementById("reader");
-  // reader.innerHTML = "";
+// $(document).ready(function(){
+//   // var reader = document.getElementById("reader");
+//   // reader.innerHTML = "";
 
-  // Get device ID from selected value
-  // TODO default select first
-  var deviceId = document.querySelector('select#videoSource').value;
+//   // Get device ID from selected value
+//   // TODO default select first
+//   var deviceId = document.querySelector('select#videoSource').value;
 
-  if(!deviceId) {
-    console.log('No device selected');
-    return;
-  }
+//   if(!deviceId) {
+//     console.log('No device selected');
+//     return;
+//   }
   
-  $('#reader').html5_qrcode(
-    function(data) {
-      console.log(data);
-      // $('#reader').html5_qrcode_stop();
-      // reader.innerHTML = "";
-    },
-    function(error) {},
-    function(videoError) {console.error(videoError);},
-    deviceId
-  )
-});
+//   $('#reader').html5_qrcode(
+//     function(data) {
+//       console.log(data);
+//       // $('#reader').html5_qrcode_stop();
+//       // reader.innerHTML = "";
+//     },
+//     function(error) {},
+//     function(videoError) {console.error(videoError);},
+//     deviceId
+//   )
+// });
 
 
 
