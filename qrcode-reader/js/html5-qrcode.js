@@ -1,6 +1,6 @@
 (function($) {
     jQuery.fn.extend({
-        html5_qrcode: function(qrcodeSuccess, qrcodeError, videoError) {
+        html5_qrcode: function(qrcodeSuccess, qrcodeError, videoError, deviceId) {
             return this.each(function() {
                 var currentElem = $(this);
 
@@ -25,7 +25,7 @@
                 var localMediaStream;
 
                 var scan = function() {
-                    console.log('in scan');
+                    // console.log('in scan');
                     if (localMediaStream) {
                         context.drawImage(video, 0, 0, 307, 250);
 
@@ -46,7 +46,7 @@
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
                 var successCallback = function(stream) {
-                    console.log('in successCallback');
+                    // console.log('in successCallback');
                     video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
                     localMediaStream = stream;
                     $.data(currentElem[0], "stream", stream);
@@ -57,8 +57,8 @@
 
                 // Call the getUserMedia method with our callback functions
                 if (navigator.getUserMedia) {
-                    console.log('has getUserMedia');
-                    navigator.getUserMedia({video: true}, successCallback, function(error) {
+                    // console.log('has getUserMedia');
+                    navigator.getUserMedia({video: {deviceId: {exact: deviceId} } }, successCallback, function(error) {
                         videoError(error, localMediaStream);
                     });
                 } else {

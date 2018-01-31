@@ -20,10 +20,10 @@
 
 
 var videoSelect = document.querySelector('select#videoSource');
-videoSelect.onchange = getStream;
+// videoSelect.onchange = getStream;
 
 navigator.mediaDevices.enumerateDevices()
-  .then(gotDevices).then(getStream).catch(handleError);
+  .then(gotDevices).catch(handleError);
 
 
 

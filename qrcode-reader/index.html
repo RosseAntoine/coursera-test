@@ -21,6 +21,14 @@
 			function scanQrCode() {
 				var reader = document.getElementById("reader");
 				reader.innerHTML = "";
+
+				// Get device ID from selected value
+				var deviceId = document.querySelector('select#videoSource').value;
+
+				if(!deviceId) {
+					console.log('No device selected');
+					return;
+				}
 				
 				$('#reader').html5_qrcode(
 					function(data) {
@@ -29,7 +37,8 @@
 			 			reader.innerHTML = "";
 				 	},
 				 	function(error) {},
-				 	function(videoError) {console.error(videoError);}
+				 	function(videoError) {console.error(videoError);},
+				 	deviceId
 				)
 			}
 		</script>
