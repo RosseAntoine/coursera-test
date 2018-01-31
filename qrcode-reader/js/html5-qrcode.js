@@ -58,6 +58,7 @@
                 // Call the getUserMedia method with our callback functions
                 if (navigator.getUserMedia) {
                     // console.log('has getUserMedia');
+                    console.log('deviceId: ', deviceId);
                     navigator.getUserMedia({video: {deviceId: {exact: deviceId} } }, successCallback, function(error) {
                         videoError(error, localMediaStream);
                     });
