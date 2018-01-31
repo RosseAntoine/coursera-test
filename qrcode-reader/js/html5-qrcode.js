@@ -16,6 +16,7 @@
                 }
 
                 var vidElem = $('<video width="' + width + 'px" height="' + height + 'px"></video>');
+                vidElem.
                 vidElem.appendTo(currentElem);
                 var canvasElem = $('<canvas id="qr-canvas" width="' + (width - 2) + 'px" height="' + (height - 2) + 'px" style="display:none;"></canvas>').appendTo(currentElem);
 
@@ -25,6 +26,7 @@
                 var localMediaStream;
 
                 var scan = function() {
+                    console.log('in scan');
                     if (localMediaStream) {
                         context.drawImage(video, 0, 0, 307, 250);
 
@@ -45,6 +47,7 @@
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
                 var successCallback = function(stream) {
+                    console.log('in successCallback');
                     video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
                     localMediaStream = stream;
                     $.data(currentElem[0], "stream", stream);
@@ -55,6 +58,7 @@
 
                 // Call the getUserMedia method with our callback functions
                 if (navigator.getUserMedia) {
+                    console.log('has getUserMedia');
                     navigator.getUserMedia({video: true}, successCallback, function(error) {
                         videoError(error, localMediaStream);
                     });
