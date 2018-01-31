@@ -14,7 +14,7 @@
 	<body>
 		<select id="videoSource"></select>
 		<div id="reader" style="width: 300px; height: 250px"></div>
-  		<span id="read" class="center"></span>
+  		<!-- <span id="read" class="center"></span> -->
   		<br>
   		<!-- <video id="gum-local" autoplay playsinline></video> -->
 		<script type="text/javascript">
@@ -23,6 +23,7 @@
 				reader.innerHTML = "";
 
 				// Get device ID from selected value
+				// TODO default select first
 				var deviceId = document.querySelector('select#videoSource').value;
 
 				if(!deviceId) {

@@ -58,21 +58,45 @@ function gotStream(stream) {
 
 
 
+$(document).ready(function(){
+  // var reader = document.getElementById("reader");
+  // reader.innerHTML = "";
+
+  // Get device ID from selected value
+  // TODO default select first
+  var deviceId = document.querySelector('select#videoSource').value;
+
+  if(!deviceId) {
+    console.log('No device selected');
+    return;
+  }
+  
+  $('#reader').html5_qrcode(
+    function(data) {
+      console.log(data);
+      // $('#reader').html5_qrcode_stop();
+      // reader.innerHTML = "";
+    },
+    function(error) {},
+    function(videoError) {console.error(videoError);},
+    deviceId
+  )
+});
 
 
 
 
 
-function handleSuccess(stream) {
-  var videoTracks = stream.getVideoTracks();
-  console.log('Got stream with constraints:', constraints);
-  console.log('Using video device: ' + videoTracks[0].label);
-  stream.oninactive = function() {
-    console.log('Stream inactive');
-  };
-  window.stream = stream; // make variable available to browser console
-  // video.srcObject = stream;
-}
+// function handleSuccess(stream) {
+//   var videoTracks = stream.getVideoTracks();
+//   console.log('Got stream with constraints:', constraints);
+//   console.log('Using video device: ' + videoTracks[0].label);
+//   stream.oninactive = function() {
+//     console.log('Stream inactive');
+//   };
+//   window.stream = stream; // make variable available to browser console
+//   // video.srcObject = stream;
+// }
 
 // function handleError(error) {
 //   if (error.name === 'ConstraintNotSatisfiedError') {
